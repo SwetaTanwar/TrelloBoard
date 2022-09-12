@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 const Card = ({num}) => {
+  const [backgroundColor, setBackgroundColor] = useState('lightcoral');
+
+  const onCardPress = () => {
+    const randomNumber = Math.floor(Math.random() * 5);
+    setBackgroundColor(COLORS[randomNumber]);
+  };
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onCardPress}>
       <Text>{num}</Text>
 
-      <View style={styles.label} />
+      <View style={[styles.label, {backgroundColor}]} />
     </TouchableOpacity>
   );
 };
@@ -29,7 +35,6 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 4,
     position: 'absolute',
-    backgroundColor: 'lightcoral',
     top: 5,
     right: 5,
   },
